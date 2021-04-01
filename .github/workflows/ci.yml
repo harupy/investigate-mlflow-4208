@@ -16,6 +16,9 @@ jobs:
         db-type: [mysql, postgres, sqlite]
     steps:
       - uses: actions/checkout@v2
-      - name: Run tests
+      - name: Build
+        run: |
+          docker-compose --file docker-compose-${{ matrix.db-type }}.yml build
+      - name: Run
         run: |
           docker-compose --file docker-compose-${{ matrix.db-type }}.yml up --exit-code-from server
