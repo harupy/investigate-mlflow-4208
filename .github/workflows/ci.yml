@@ -12,8 +12,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
-    matrix:
-      db-type: [mysql, postgres, sqlite]
+      matrix:
+        db-type: [mysql, postgres, sqlite]
     steps:
       - uses: actions/checkout@v2
       - name: Run tests
