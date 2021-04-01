@@ -21,4 +21,4 @@ jobs:
           docker-compose --file docker-compose-${{ matrix.db-type }}.yml build
       - name: Run
         run: |
-          docker-compose --file docker-compose-${{ matrix.db-type }}.yml run --exit-code-from server
+          docker-compose --file docker-compose-${{ matrix.db-type }}.yml up --exit-code-from server
