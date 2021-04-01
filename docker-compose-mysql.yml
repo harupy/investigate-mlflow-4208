@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root-password
+      MYSQL_DATABASE: mlflowdb
+      MYSQL_USER: mlflowuser
+      MYSQL_PASSWORD: mlflowpassword
+  server:
+    depends_on:
+      - mysql
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    environment:
+      MLFLOW_TRACKING_URI: mysql://mlflowuser:mlflowpassword@mysql:3306/mlflowdb
+    command: bash -c "python /mlflow_log.py"

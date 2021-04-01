@@ -6,17 +6,15 @@ services:
     expose:
       - "5432"
     environment:
-      POSTGRES_USER: mlflow
-      POSTGRES_PASSWORD: mlflow
-      POSTGRES_DB: mlflow
-
+      POSTGRES_USER: mlflowuser
+      POSTGRES_PASSWORD: mlflowpassword
+      POSTGRES_DB: mlflowdb
   server:
     depends_on:
       - postgres
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.postgres
     environment:
-      MLFLOW_TRACKING_URI: postgresql://mlflow:mlflow@postgres:5432/mlflow
-      # MLFLOW_TRACKING_URI: sqlite:////mlflow.db
+      MLFLOW_TRACKING_URI: postgresql://mlflowuser:mlflowpassword@postgres:5432/mlflowdb
     command: bash -c "python /mlflow_log.py"

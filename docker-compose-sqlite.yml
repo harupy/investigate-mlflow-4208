@@ -1,0 +1,9 @@
+version: "3"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    environment:
+      MLFLOW_TRACKING_URI: sqlite:////mlflow.db
+    command: bash -c "python /mlflow_log.py"
