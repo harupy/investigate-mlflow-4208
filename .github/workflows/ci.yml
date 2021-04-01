@@ -1,0 +1,21 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+    matrix:
+      db-type: [mysql, postgres, sqlite]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          docker-compose --file docker-compose-${{ matrix.db-type }}.yml up --exit-code-from server
