@@ -8,6 +8,7 @@ services:
       MYSQL_DATABASE: mlflowdb
       MYSQL_USER: mlflowuser
       MYSQL_PASSWORD: mlflowpassword
+
   server:
     depends_on:
       - mysql
@@ -16,4 +17,4 @@ services:
       dockerfile: Dockerfile.mysql
     environment:
       MLFLOW_TRACKING_URI: mysql://mlflowuser:mlflowpassword@mysql:3306/mlflowdb
-    command: bash -c "python /mlflow_log.py"
+    command: bash -c "python /app/mlflow_log_mysql.py"

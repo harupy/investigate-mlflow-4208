@@ -1,4 +1,5 @@
 # Ignore everything
 **
 
+!mlflow_log_mysql.py
 !mlflow_log.py

@@ -1,10 +1,11 @@
 FROM python:3.7
 
-# RUN pip install mlflow==1.15.0
+WORKDIR /app
 
-# Install mlflow containing a patch for the issue
-RUN pip install git+https://github.com/dolfinus/mlflow.git@fix_1.15_migration
+RUN pip install mlflow==1.15.0
 
-RUN pip install mysqlclient
+# RUN pip install -U git+https://github.com/dolfinus/mlflow.git@fix_1.15_migration
 
-COPY mlflow_log.py /mlflow_log.py
+RUN pip install pymysql mysqlclient pandas
+
+COPY mlflow_log_mysql.py mlflow_log_mysql.py
